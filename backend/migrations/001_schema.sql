@@ -1,3 +1,7 @@
 -- New MySQL baseline: SQLAlchemy metadata creates datasets, instruments, studies, runs, reviews, reports, users, audits.
 -- Study variance_ratio and tolerance explicitly use DOUBLE.
+-- datasets.x_unit / datasets.y_unit declare each side independently; runs and reports store
+-- conversion basis, variance_ratio_input and variance_ratio_analysis inside the JSON payload,
+-- so no column migration is required. Existing kPa/kPa rows stay valid: conversion factor is 1
+-- and variance_ratio_analysis equals the stored input.
 -- Existing deployments require reviewed migrations; automatic destructive upgrades are not provided.
